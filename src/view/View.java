@@ -31,6 +31,7 @@ public class View {
                         if (dropFrequency<1 | dropFrequency>100){
                             throw new IOException("частота:неверное значение(1-100)");
                         }
+                        controller.addToy(nameToy, quantity, dropFrequency);
 
                     }catch (Exception e){
                         System.out.println(e.getMessage());

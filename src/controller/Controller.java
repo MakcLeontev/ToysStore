@@ -6,7 +6,8 @@ public class Controller {
 
     ToysService toysService = new ToysService();
 
-    public void addToy(){
+    public void addToy(String nameToy, int quantity, int dropFrequency){
+
 
     }
 }
