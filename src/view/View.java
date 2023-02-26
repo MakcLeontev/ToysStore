@@ -56,6 +56,12 @@ public class View {
                     }
                     break;
                 case DRAW:
+                    try {
+                        controller.rafflePrizes();
+                    }catch (Exception e){
+                        System.out.println(e.getMessage());
+                        continue;
+                    }
 
                 case ADDPRIZE:
 

@@ -24,6 +24,13 @@ public class ToysService {
         return toy;
     }
 
+    public Toys changeQuantity(Toys toy){
+        int quantity = toy.getQuantity();
+        toy.setQuantity(quantity-1);
+        return toy;
+    }
+
+
 
 
 }

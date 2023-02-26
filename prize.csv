@@ -1,0 +1,4 @@
+Toys{toysId=2, nameToys='doll', quantity=3, dropFrequency=40}
+Toys{toysId=2, nameToys='doll', quantity=3, dropFrequency=20}
+Toys{toysId=2, nameToys='doll', quantity=2, dropFrequency=20}
+Toys{toysId=1, nameToys='car', quantity=1, dropFrequency=80}

@@ -1,15 +1,18 @@
 package controller;
 
+import service.FileService;
 import service.ToysService;
 import toys.Toys;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Controller {
 
     ToysService toysService = new ToysService();
+    FileService fileService = new FileService();
     List<Toys>toysList = new ArrayList<>();
 
     public void addToy(String nameToy, int quantity, int dropFrequency) throws IOException {
@@ -41,10 +44,45 @@ public class Controller {
         }
     }
 
-    public void draw(){
-        List<Integer>id = new ArrayList<>();
+    public long draw() throws IOException {
+        Random random = new Random();
+        List<Long>idList = new ArrayList<>();
         List<Integer>chance = new ArrayList<>();
-
+        List<Long>list = new ArrayList<>();
+        for (Toys toys:toysList){
+            if (toys.getQuantity() == 0){
+                idList.add(0L);
+            }
+            idList.add(toys.getToysId());
+        }
+        for (Toys toys:toysList){
+            chance.add(toys.getDropFrequency());
+        }
+        for (int i = 0; i < idList.size() ; i++) {
+            for (int j = 0; j < chance.get(i) ; j++) {
+                list.add(idList.get(i));
+            }
+        }
+        if(list.size()<100){
+            for (int j = list.size(); j < 100; j++) {
+                list.add(0L);
+            }
+        }
+        System.out.println(list);
+        int index = random.nextInt(101);
+        long idToy = list.get(index-1);
+        if(idToy == 0){
+            throw new IOException("к сожалению вы ничего не выиграли, попробуйте еще раз :(");
+        }else {
+            Toys prize = toysList.get(((int) idToy)-1);
+            System.out.println("Вы выиграли: "+prize.getNameToys());
+            return idToy;
+        }
+    }
+    public void rafflePrizes() throws IOException {
+        long id = draw();
+        fileService.writePrize(toysList.get((int) (id-1)));
+        toysList.set((int) (id-1),toysService.changeQuantity(toysList.get((int) (id-1))));
     }
 
 }
