@@ -7,6 +7,7 @@ public enum Commands {
     NONE,
     GETTOY,
     EXIT,
-    VIEW
+    VIEW,
+    DRAW
 
 }

@@ -55,6 +55,8 @@ public class View {
                         continue;
                     }
                     break;
+                case DRAW:
+
                 case ADDPRIZE:
 
                     break;
