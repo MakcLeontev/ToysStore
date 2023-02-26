@@ -19,8 +19,9 @@ public class ToysService {
         return new Toys(id, nameToys, quantity, dropFrequency);
     }
 
-    public Toys changeToys(long id){
-        return null;
+    public Toys changeToys(Toys toy, int dropFrequency){
+        toy.setDropFrequency(dropFrequency);
+        return toy;
     }
 
 

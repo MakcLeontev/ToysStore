@@ -6,6 +6,7 @@ public enum Commands {
     ADDPRIZE,
     NONE,
     GETTOY,
-    EXIT
+    EXIT,
+    VIEW
 
 }

@@ -39,12 +39,20 @@ public class View {
 
                     }
                     break;
+                case VIEW:
+                    controller.viewAllToys();
+                    continue;
                 case CHANGE:
-                    String id = prompt("Идентификатор пользователя: ");
                     try {
-
+                        int id = Integer.parseInt(prompt("Введите id игрушки, которую хотите изменить: "));
+                        int dropFrequency = Integer.parseInt(prompt("Введите частоту выпадения в розыгрыше: "));
+                        if (dropFrequency<1 | dropFrequency>100){
+                            throw new IOException("частота:неверное значение(1-100)");
+                        }
+                        controller.change(id,dropFrequency);
                     } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        System.out.println(e.getMessage());
+                        continue;
                     }
                     break;
                 case ADDPRIZE:
