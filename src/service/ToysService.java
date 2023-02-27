@@ -15,22 +15,20 @@ public class ToysService {
         return toysList;
     }
 
-    public Toys createToys(long id, String nameToys, int quantity, int dropFrequency){
+    public Toys createToys(long id, String nameToys, int quantity, int dropFrequency) {
         return new Toys(id, nameToys, quantity, dropFrequency);
     }
 
-    public Toys changeToys(Toys toy, int dropFrequency){
+    public Toys changeToys(Toys toy, int dropFrequency) {
         toy.setDropFrequency(dropFrequency);
         return toy;
     }
 
-    public Toys changeQuantity(Toys toy){
+    public Toys changeQuantity(Toys toy) {
         int quantity = toy.getQuantity();
-        toy.setQuantity(quantity-1);
+        toy.setQuantity(quantity - 1);
         return toy;
     }
-
-
 
 
 }

@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class View {
     Controller controller = new Controller();
+
     public void run() throws IOException {
         Commands com = Commands.NONE;
 
@@ -14,7 +15,7 @@ public class View {
             try {
                 String command = prompt("Введите команду: ");
                 com = Commands.valueOf(command.toUpperCase());
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println("Unknown command");
                 continue;
             }
@@ -24,32 +25,36 @@ public class View {
                     String nameToy = prompt("Введите название игрушки: ");
                     try {
                         int quantity = Integer.parseInt(prompt("Введите количество: "));
-                        if (quantity < 1){
+                        if (quantity < 1) {
                             throw new IOException("количество:неверное значение");
                         }
                         int dropFrequency = Integer.parseInt(prompt("Введите частоту выпадения в розыгрыше: "));
-                        if (dropFrequency<1 | dropFrequency>100){
+                        if (dropFrequency < 1 | dropFrequency > 100) {
                             throw new IOException("частота:неверное значение(1-100)");
                         }
                         controller.addToy(nameToy, quantity, dropFrequency);
 
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         System.out.println(e.getMessage());
                         continue;
-
                     }
                     break;
                 case VIEW:
-                    controller.viewAllToys();
-                    continue;
+                    try {
+                        controller.viewAllToys();
+                    }catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        continue;
+                    }
+                    break;
                 case CHANGE:
                     try {
                         int id = Integer.parseInt(prompt("Введите id игрушки, которую хотите изменить: "));
-                        int dropFrequency = Integer.parseInt(prompt("Введите частоту выпадения в розыгрыше: "));
-                        if (dropFrequency<1 | dropFrequency>100){
+                        int dropFrequency = Integer.parseInt(prompt("Введите частоту выпадения в розыгрыше(1-100): "));
+                        if (dropFrequency < 1 | dropFrequency > 100) {
                             throw new IOException("частота:неверное значение(1-100)");
                         }
-                        controller.change(id,dropFrequency);
+                        controller.change(id, dropFrequency);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                         continue;
@@ -58,10 +63,11 @@ public class View {
                 case DRAW:
                     try {
                         controller.rafflePrizes();
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         System.out.println(e.getMessage());
                         continue;
                     }
+                    break;
 
                 case ADDPRIZE:
 
