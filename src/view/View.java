@@ -68,12 +68,6 @@ public class View {
                         continue;
                     }
                     break;
-
-                case ADDPRIZE:
-
-                    break;
-                case GETTOY:
-
             }
         }
     }
@@ -83,5 +77,4 @@ public class View {
         System.out.print(message);
         return in.nextLine();
     }
-
 }
